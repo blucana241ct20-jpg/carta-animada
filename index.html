@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti, Mara</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap');
+
+  :root{
+    --pink: #e78ea1;
+    --pink-dark: #c76277;
+    --pink-light: #ffe6ec;
+    --green: #7a9b7e;
+    --cream: #fff8f5;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(160deg, #fff0f3, #ffe1e8, #ffd6de);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    position:relative;
+  }
+
+  /* ---------- Pantalla inicial ---------- */
+  #opening{
+    text-align:center;
+    z-index:5;
+  }
+
+  #pressBtn{
+    background: var(--pink);
+    color:white;
+    border:none;
+    padding: 18px 42px;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    font-family:'Poppins', sans-serif;
+    cursor:pointer;
+    box-shadow: 0 10px 25px rgba(199,98,119,0.4);
+    transition: transform .2s ease, background .3s ease;
+    animation: pulse 1.8s infinite;
+  }
+  #pressBtn:hover{ transform: scale(1.06); background: var(--pink-dark); }
+
+  @keyframes pulse{
+    0%,100%{ box-shadow: 0 0 0 0 rgba(231,142,161,0.5); }
+    50%{ box-shadow: 0 0 0 18px rgba(231,142,161,0); }
+  }
+
+  #openingSub{
+    margin-top:18px;
+    color: var(--pink-dark);
+    font-size:1rem;
+    opacity:0.85;
+    min-height:1.4em;
+  }
+
+  /* ---------- Carta ---------- */
+  #letter{
+    display:none;
+    width:100%;
+    max-width: 950px;
+    margin: 30px;
+    background: var(--cream);
+    border-radius: 24px;
+    box-shadow: 0 25px 60px rgba(150,60,80,0.25);
+    padding: 40px 30px;
+    position:relative;
+    animation: fadeUp 1.2s ease forwards;
+  }
+
+  @keyframes fadeUp{
+    from{ opacity:0; transform: translateY(40px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  h1.title{
+    text-align:center;
+    font-family:'Dancing Script', cursive;
+    font-size: 3rem;
+    color: var(--pink-dark);
+    margin: 0 0 30px 0;
+  }
+
+  #letterBody{
+    display:flex;
+    gap: 30px;
+    align-items:flex-start;
+  }
+
+  #flowerSide{
+    flex: 0 0 220px;
+    display:flex;
+    justify-content:center;
+  }
+
+  #textSide{
+    flex:1;
+    font-size: 1.08rem;
+    line-height: 1.9;
+    color:#5a3d42;
+    white-space: pre-wrap;
+    min-height: 320px;
+  }
+
+  #textSide .cursor{
+    display:inline-block;
+    width: 2px;
+    background: var(--pink-dark);
+    margin-left:2px;
+    animation: blink 0.8s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .signature{
+    margin-top: 25px;
+    font-family:'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: var(--pink-dark);
+    text-align:right;
+    opacity:0;
+    transition: opacity 1s ease;
+  }
+  .signature.show{ opacity:1; }
+
+  /* ---------- Corazones flotantes ---------- */
+  .heart{
+    position:fixed;
+    bottom:-40px;
+    font-size: 1.4rem;
+    color: var(--pink);
+    opacity:0.7;
+    animation: floatUp linear forwards;
+    pointer-events:none;
+    z-index:1;
+  }
+  @keyframes floatUp{
+    to{ transform: translateY(-110vh) translateX(var(--drift,0px)) rotate(360deg); opacity:0; }
+  }
+
+  @media (max-width: 720px){
+    #letterBody{ flex-direction: column; align-items:center; }
+    #flowerSide{ flex:none; margin-bottom:10px; }
+    h1.title{ font-size: 2.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="hearts"></div>
+
+<div id="opening">
+  <button id="pressBtn">Aprieta 💌</button>
+  <div id="openingSub"></div>
+</div>
+
+<div id="letter">
+  <h1 class="title">Para ti, Mara</h1>
+  <div id="letterBody">
+    <div id="flowerSide">
+      <svg width="200" height="220" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+        <!-- tallo -->
+        <path d="M100 220 C 95 180, 105 160, 100 130" stroke="#7a9b7e" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- hojas -->
+        <path d="M100 170 C 80 165, 70 150, 78 140 C 92 145, 100 158, 100 170 Z" fill="none" stroke="#7a9b7e" stroke-width="2.5"/>
+        <path d="M100 155 C 120 150, 130 135, 122 125 C 108 130, 100 143, 100 155 Z" fill="none" stroke="#7a9b7e" stroke-width="2.5"/>
+        <!-- ramo de rosas -->
+        <g stroke="#c76277" stroke-width="2.2" fill="none">
+          <circle cx="100" cy="80" r="26"/>
+          <path d="M100 80 m-14,-6 a10,10 0 1,0 20,0 a8,8 0 1,1 -14,8"/>
+          <circle cx="65" cy="95" r="20"/>
+          <path d="M65 95 m-11,-5 a8,8 0 1,0 16,0 a6,6 0 1,1 -11,6"/>
+          <circle cx="135" cy="95" r="20"/>
+          <path d="M135 95 m-11,-5 a8,8 0 1,0 16,0 a6,6 0 1,1 -11,6"/>
+          <circle cx="80" cy="55" r="17"/>
+          <path d="M80 55 m-9,-4 a7,7 0 1,0 14,0 a5,5 0 1,1 -9,5"/>
+          <circle cx="120" cy="55" r="17"/>
+          <path d="M120 55 m-9,-4 a7,7 0 1,0 14,0 a5,5 0 1,1 -9,5"/>
+          <circle cx="100" cy="40" r="15"/>
+          <path d="M100 40 m-8,-4 a6,6 0 1,0 13,0 a4,4 0 1,1 -8,4"/>
+        </g>
+        <!-- hojitas del ramo -->
+        <g fill="none" stroke="#7a9b7e" stroke-width="2">
+          <path d="M55 80 C 45 75, 45 65, 55 60 C 60 68, 58 76, 55 80Z"/>
+          <path d="M145 80 C 155 75, 155 65, 145 60 C 140 68, 142 76, 145 80Z"/>
+          <path d="M100 20 C 92 15, 92 8, 100 5 C 106 10, 105 17, 100 20Z"/>
+        </g>
+        <!-- listón -->
+        <path d="M78 105 Q100 118 122 105" stroke="#c76277" stroke-width="2.5" fill="none"/>
+      </svg>
+    </div>
+    <div id="textSide"></div>
+  </div>
+  <div class="signature" id="signature">Con todo mi amor 🌷</div>
+</div>
+
+<!-- Reproductor oculto de YouTube -->
+<div style="position:fixed; width:1px; height:1px; overflow:hidden; opacity:0;">
+  <iframe id="ytPlayer" width="1" height="1"
+    src=""
+    title="Labios Rotos - Zoé"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<script>
+const pressBtn = document.getElementById('pressBtn');
+const openingSub = document.getElementById('openingSub');
+const opening = document.getElementById('opening');
+const letter = document.getElementById('letter');
+const ytPlayer = document.getElementById('ytPlayer');
+
+let stage = 0;
+
+pressBtn.addEventListener('click', () => {
+  stage++;
+  if(stage === 1){
+    pressBtn.textContent = 'Sigue apretando...';
+    openingSub.textContent = '';
+  } else if(stage >= 2){
+    // Activar musica
+    ytPlayer.src = 'https://www.youtube.com/embed/7h2ryr_uUEs?autoplay=1&start=0';
+    // Transicion
+    opening.style.transition = 'opacity .6s ease';
+    opening.style.opacity = '0';
+    setTimeout(() => {
+      opening.style.display = 'none';
+      letter.style.display = 'block';
+      startTypewriter();
+    }, 600);
+  }
+});
+
+// Efecto maquina de escribir
+const cartaTexto = `Mara:
+
+Hay personas que solo pasan, y hay personas que se quedan sin siquiera proponérselo. Tú eres de las segundas.
+
+Quiero que sepas que cada momento contigo se ha convertido en uno de esos recuerdos que guardo con cuidado, como quien guarda algo frágil y valioso. Tu manera de reír, tu forma de mirar las cosas, la calma que le pones a los días difíciles... todo eso ha hecho que quererte sea de lo más natural que me ha pasado.
+
+No necesito un motivo especial para escribirte esto. Solo quería que, por un momento, pudieras sentir un poco de lo que yo siento cuando pienso en ti.
+
+Gracias por dejarme entrar, por tus labios, por tu tiempo, por ser tú.
+
+Esta carta es pequeña, pero lo que siento por ti no cabe en ninguna pantalla.`;
+
+function startTypewriter(){
+  const el = document.getElementById('textSide');
+  const signature = document.getElementById('signature');
+  el.innerHTML = '<span id="typed"></span><span class="cursor">&nbsp;</span>';
+  const typed = document.getElementById('typed');
+  let i = 0;
+  function tick(){
+    if(i < cartaTexto.length){
+      typed.textContent += cartaTexto.charAt(i);
+      i++;
+      setTimeout(tick, 28);
+    } else {
+      signature.classList.add('show');
+    }
+  }
+  tick();
+}
+
+// Corazones flotantes
+function spawnHeart(){
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.textContent = ['💗','💕','🌸','🌷'][Math.floor(Math.random()*4)];
+  h.style.left = Math.random()*100 + 'vw';
+  h.style.setProperty('--drift', (Math.random()*80-40)+'px');
+  h.style.animationDuration = (5 + Math.random()*4) + 's';
+  document.getElementById('hearts').appendChild(h);
+  setTimeout(() => h.remove(), 10000);
+}
+setInterval(spawnHeart, 700);
+</script>
+
+</body>
+</html>
